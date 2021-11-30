@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bookers2</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark" >
+        <div class="container">
+          <p class="navbar-brand px-10"><%= link_to "Bookers", root_path , class: 'text-white'%></p>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation" >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+              <% if user_signed_in? %>
+              <li class="nav-link" style="color:#ffffff;">
+                <a class="fas fa-home text-white" href="/users/<%= current_user.id %>" > Home</a>
+          　   </li>
+              
+              <li class="nav-link" >
+                <a class="fas fa-users text-white" href="/users"> Users</a>
+              </li>
+              <li class="nav-link">
+                <a class="fas fa-book-open text-white" style="color:#ffffff;" href="/books"> Books</a>
+              </li>
+              <li class="nav-link">
+                <a class="fas fa-sign-out-alt text-white" style="color:#ffffff;"href="/users/sign_out" data-method="delete"> Log out</a>
+              </li>
+              <% else %>
+              <li class="nav-link" style="color:#ffffff;">
+                <a class="fas fa-home text-white" href="/" > Home</a>
+          　   </li>
+              <li class="nav-link" style="color:#ffffff;">
+                <a class="fas fa-link text-white" href="/home/about"> About</a>
+              <li class="nav-link">
+              <li class="nav-link">
+                <a class="fas fa-user-plus text-white" style="color:#ffffff;" href="/users/sign_up"> Sign up</a>
+              </li>
+              <li class="nav-link">
+                <a class="fas fa-sign-in-alt text-white" style="color:#ffffff;" href="/users/sign_in"> Log in</a>
+              </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main class="mb-auto">
+    <body>
+      <%= render 'layouts/notifications' %>
+    </body>
+      <%= yield %>
+    </main>
+    <footer class="bg-white text-black my-5">
+      <p class="text-center">CopyRight Infratop.inc</p>
+    </footer>
+  </body>
+</html>

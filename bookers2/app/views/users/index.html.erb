@@ -1,0 +1,60 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <h2>User info</h2>
+      <div>
+        <%= attachment_image_tag @user, :profile_image, :fill, 50, 50, format: 'jpeg', fallback: "no_image.jpg" %>
+        <table class="table">
+          <tbody>
+            <tr>
+              <th>name</th>
+              <th><%= current_user.name %></th>
+            </tr>
+            <tr>
+              <th>introduction</th>
+              <th><%= current_user.introduction %></th>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="row">
+        <div class="text-center col-12">
+          <a class="fas fa-user-cog btn col text-center my-1 border" href="/users/<%= current_user.id %>/edit" role="button"></a>
+        </div>
+      </div>
+      <div>
+        <h2>New book</h2>
+        <%= form_with model: @book, local:true do |f| %>
+          <h6>title</h6>
+          <%= f.text_field :title %>
+          <h6>Opinion</h6>
+          <%= f.text_field :body %>
+          <button type="submit" class="btn btn-success my-1">Create Book</button>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-md-8 offset-md-1">
+      <h2>Users</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>name</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |users| %>
+            <tr>
+              <th>
+                <%= attachment_image_tag users, :profile_image, :fill, 50, 50, format: 'jpeg', fallback: "no_image.jpg" %>
+              </th>
+              <th><%= users.name %></th>
+              <th><a href="/users/<%= users.id %>">Show</a></th>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
