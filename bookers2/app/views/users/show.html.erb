@@ -57,6 +57,26 @@
               </th>
               <th><a href="/books/<%= book.id %>"><%= book.title %></a></th>
               <th><%= book.body %></th>
+              <% if @user.id == current_user.id %>
+                <th><a class="btn btn-success col-10 text-center " href="/books/<%= book.id %>/edit" role="button">Edit</a></th>
+                <th><a class="btn btn-danger col-10 text-center " href="/books/<%= book.id %>" data-method="delete" role="button">Destroy</a></th>
+              <% end %>
+              <th>
+                <% if book.favorited_by?(current_user) %>
+                  <P>
+                    <a class="text-danger" href="/books/<%= book.id %>/favorites" data-method="delete">
+                      <i class="fas fa-heart" style="color: red;"><%= book.favorites.count %></i>
+                    </a>
+                  </P>
+                <% else %>
+                  <P>
+                    <a class="text-primary" href="/books/<%= book.id %>/favorites" data-method="post">
+                      <i class="fas fa-heart" style="color: blue;"><%= book.favorites.count %></i>
+                    </a>
+                  </P>
+                <% end %>
+              </th>
+              <th><p>コメント数: <%= book.book_comments.count %></p></th>
             </tr>
           <% end %>
         </tbody>

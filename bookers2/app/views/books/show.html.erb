@@ -53,9 +53,59 @@
               <th><a class="btn btn-success col-10 text-center " href="/books/<%= @booksh.id %>/edit" role="button">Edit</a></th>
               <th><a class="btn btn-danger col-10 text-center " href="/books/<%= @booksh.id %>" data-method="delete" role="button">Destroy</a></th>
             <% end %>
+            <th>
+              <% if @booksh.favorited_by?(current_user) %>
+                <P>
+                  <a class="text-danger" href="/books/<%= @booksh.id %>/favorites" data-method="delete">
+                    <i class="fas fa-heart" style="color: red;"><%= @booksh.favorites.count %></i>
+                  </a>
+                </P>
+                <% else %>
+                <P>
+                  <a class="text-primary" href="/books/<%= @booksh.id %>/favorites" data-method="post">
+                    <i class="fas fa-heart" style="color: blue;"><%= @booksh.favorites.count %></i>
+                  </a>
+                </P>
+              <% end %>
+            </th>
+            <th><p>コメント数: <%= @booksh.book_comments.count %></p></th>
           </tr>
         </tbody>
       </table>
+      <div>
+        <table class="table">
+          <tbody>
+            <% @booksh.book_comments.each do |book_comment| %>
+              <tr>
+                <th>
+                  <div class="row">
+                    <p><%= attachment_image_tag @booksh.user, :profile_image, :fill, 50, 50, fallback: "no_image.jpg" %></p>
+                  </div>
+                  <div class="row">
+                    <%= book_comment.user.name %>
+                  </div>
+                </th>
+                <th>
+                  <%= book_comment.comment %>
+                </th>
+                <th>
+                  <% if book_comment.user == current_user %>
+                    <div>
+                      <a class="btn btn-danger col-10 text-center " href="/books/<%= @booksh.id %>/book_comments/<%= book_comment.id %>" data-method="delete" role="button">Destroy</a>
+                    </div>
+                  <% end %>
+                </th>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <%= form_with(model:[@booksh, @book_comment], local: true) do |f| %>
+          <%= f.text_area :comment, rows:'5' %>
+          <%= f.submit "送信" %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

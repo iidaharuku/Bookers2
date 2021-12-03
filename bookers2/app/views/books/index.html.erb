@@ -59,6 +59,22 @@
               </th>
               <th><a href="/books/<%= books.id %>" ><%= books.title %></a></th>
               <th><%= books.body %></th>
+              <th>
+                <% if books.favorited_by?(current_user) %>
+                  <P>
+                    <a class="text-danger" href="/books/<%= books.id %>/favorites" data-method="delete">
+                      <i class="fas fa-heart" style="color: red;"><%= books.favorites.count %></i>
+                    </a>
+                  </P>
+                  <% else %>
+                  <P>
+                    <a class="text-primary" href="/books/<%= books.id %>/favorites" data-method="post">
+                      <i class="fas fa-heart" style="color: blue;"><%= books.favorites.count %></i>
+                    </a>
+                  </P>
+                <% end %>
+              </th>
+              <th><p>コメント数: <%= books.book_comments.count %></p></th>
             </tr>
           <% end %>
         </tbody>

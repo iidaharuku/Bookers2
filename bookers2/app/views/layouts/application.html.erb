@@ -21,32 +21,31 @@
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
               <% if user_signed_in? %>
-              <li class="nav-link" style="color:#ffffff;">
-                <a class="fas fa-home text-white" href="/users/<%= current_user.id %>" > Home</a>
-          　   </li>
-              
-              <li class="nav-link" >
-                <a class="fas fa-users text-white" href="/users"> Users</a>
-              </li>
-              <li class="nav-link">
-                <a class="fas fa-book-open text-white" style="color:#ffffff;" href="/books"> Books</a>
-              </li>
-              <li class="nav-link">
-                <a class="fas fa-sign-out-alt text-white" style="color:#ffffff;"href="/users/sign_out" data-method="delete"> Log out</a>
-              </li>
+                <li class="nav-link" style="color:#ffffff;">
+                  <a class="fas fa-home text-white" href="/users/<%= current_user.id %>" > Home</a>
+          　     </li>
+                <li class="nav-link" >
+                  <a class="fas fa-users text-white" href="/users"> Users</a>
+                </li>
+                <li class="nav-link">
+                  <a class="fas fa-book-open text-white" style="color:#ffffff;" href="/books"> Books</a>
+                </li>
+                <li class="nav-link">
+                  <a class="fas fa-sign-out-alt text-white" style="color:#ffffff;"href="/users/sign_out" data-method="delete"> logout</a>
+                </li>
               <% else %>
-              <li class="nav-link" style="color:#ffffff;">
-                <a class="fas fa-home text-white" href="/" > Home</a>
-          　   </li>
-              <li class="nav-link" style="color:#ffffff;">
-                <a class="fas fa-link text-white" href="/home/about"> About</a>
-              <li class="nav-link">
-              <li class="nav-link">
-                <a class="fas fa-user-plus text-white" style="color:#ffffff;" href="/users/sign_up"> Sign up</a>
-              </li>
-              <li class="nav-link">
-                <a class="fas fa-sign-in-alt text-white" style="color:#ffffff;" href="/users/sign_in"> Log in</a>
-              </li>
+                <li class="nav-link" style="color:#ffffff;">
+                  <a class="fas fa-home text-white" href="/" > Home</a>
+                </li>
+                <li class="nav-link" style="color:#ffffff;">
+                  <a class="fas fa-link text-white" href="/home/about"> About</a>
+                <li class="nav-link">
+                <li class="nav-link">
+                  <a class="fas fa-user-plus text-white" style="color:#ffffff;" href="/users/sign_up"> sign up</a>
+                </li>
+                <li class="nav-link">
+                  <a class="fas fa-sign-in-alt text-white" style="color:#ffffff;" href="/users/sign_in"> login</a>
+                </li>
               <% end %>
             </ul>
           </div>

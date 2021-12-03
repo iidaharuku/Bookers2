@@ -6,6 +6,10 @@ Rails.application.routes.draw do
   get 'home/about' => 'homes#about'
   get 'users' => 'users#index'
   resources :users, only: [:show, :edit, :update]
-  resources :books
+  resources :books do
+    resource :favorites, only: [:create, :destroy]
+    resources :book_comments, only: [:create, :destroy]
+  end
+  
   
 end
